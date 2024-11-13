@@ -1,0 +1,22 @@
+version: "3"
+services:
+  ag215s-docker:
+    container_name: ag215s-docker
+    image: ag215s:latest
+    volumes:
+      # src:dest
+      - /home/${USER}/ag215s-workspace:/home/${USER}/ag215s-workspace
+      - /home/${USER}/ag215s-cwave-worksapce:/home/${USER}/ag215s-cwave-worksapce
+      - /opt/nbl-ag2150s:/opt/nbl-ag2150s
+    environment:
+      - DISPLAY=$DISPLAY
+      - USER=public
+    devices:
+      - "/dev/net/tun:/dev/net/tun"
+    cap_add:
+      - NET_ADMIN
+    # network_mode: "host"
+    stdin_open: true # docker run -i
+    tty: true # docker run -t
+    # entrypoint: /bin/zsh
+    entrypoint: /bin/bash

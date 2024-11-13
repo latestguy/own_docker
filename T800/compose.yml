@@ -1,0 +1,20 @@
+version: "3"
+services:
+  T800-docker:
+    container_name: T800-docker
+    image: t800:latest
+    volumes:
+      # src:dest
+      - /home/${USER}/t800-rsu-workspace:/home/${USER}/t800-rsu-workspace
+    environment:
+      - DISPLAY=$DISPLAY
+      - USER=public
+    devices:
+      - "/dev/net/tun:/dev/net/tun"
+    cap_add:
+      - NET_ADMIN
+    # network_mode: "host"
+    stdin_open: true # docker run -i
+    tty: true # docker run -t
+    # entrypoint: /bin/zsh
+    entrypoint: /bin/bash

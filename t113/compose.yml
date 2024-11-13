@@ -1,0 +1,22 @@
+version: "3"
+services:
+  t113-docker:
+    container_name: t113-docker
+    image: t113:latest
+    volumes:
+      # src:dest
+      - /home/$USER/t113-workspace:/home/$USER/t113-workspace
+      - /home/$USER/work/arm/t113_pro:/home/$USER/work/arm/t113_pro
+    environment:
+      - DISPLAY=$DISPLAY
+      - USER=public
+    devices:
+      - "/dev/net/tun:/dev/net/tun"
+    cap_add:
+      - NET_ADMIN
+    # network_mode: "host"
+    stdin_open: true # docker run -i
+    tty: true # docker run -t
+    # entrypoint: /bin/zsh
+    entrypoint: /bin/bash
+    working_dir: /home/public/work/arm/t113_pro

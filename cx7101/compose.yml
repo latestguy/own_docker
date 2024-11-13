@@ -1,0 +1,20 @@
+version: "3"
+services:
+  7101-docker:
+    container_name: 7101-docker
+    image: cx7101:latest
+    volumes:
+      # src:dest
+      - /home/${USER}/cx7101-workspace:/home/${USER}/cx7101-workspace
+    environment:
+      - DISPLAY=$DISPLAY
+      - USER=public
+    devices:
+      - "/dev/net/tun:/dev/net/tun"
+    cap_add:
+      - NET_ADMIN
+    network_mode: "host"
+    stdin_open: true # docker run -i
+    tty: true # docker run -t
+    # entrypoint: /bin/zsh
+    entrypoint: /bin/bash
